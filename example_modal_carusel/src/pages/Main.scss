@@ -1,0 +1,6 @@
+@import "bootstrap/scss/bootstrap";
+
+.example_page{
+    @extend .btn;
+    @extend .btn-primary;
+}
