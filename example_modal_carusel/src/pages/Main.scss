@@ -1,6 +1,22 @@
-@import "bootstrap/scss/bootstrap";
+// Main.scss
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/buttons";
 
-.example_page{
-    @extend .btn;
-    @extend .btn-primary;
+.example_page {
+  padding: 20px;
+  
+  // Стили для контейнера, а не для кнопки
+  .btn {
+    margin: 5px;
+  }
+}
+
+// Если хотите кастомные стили для кнопок
+.custom-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  border-radius: 25px;
+  padding: 12px 30px;
 }
