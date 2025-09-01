@@ -5,97 +5,27 @@
 @import "bootstrap/scss/buttons";
 
 
-@mixin button-variant(
-  $background,
-  $border,
-  $color: color-contrast($background),
-  $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
-  $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
-  $hover-color: color-contrast($hover-background),
-  $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
-  $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
-  $active-color: color-contrast($active-background),
-  $disabled-background: $background,
-  $disabled-border: $border,
-  $disabled-color: color-contrast($disabled-background)
-) {
-  --#{$prefix}btn-color: #{$color};
-  --#{$prefix}btn-bg: #{$background};
-  --#{$prefix}btn-border-color: #{$border};
-  --#{$prefix}btn-hover-color: #{$hover-color};
-  --#{$prefix}btn-hover-bg: #{$hover-background};
-  --#{$prefix}btn-hover-border-color: #{$hover-border};
-  --#{$prefix}btn-focus-shadow-rgb: #{to-rgb(mix($color, $border, 15%))};
-  --#{$prefix}btn-active-color: #{$active-color};
-  --#{$prefix}btn-active-bg: #{$active-background};
-  --#{$prefix}btn-active-border-color: #{$active-border};
-  --#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
-  --#{$prefix}btn-disabled-color: #{$disabled-color};
-  --#{$prefix}btn-disabled-bg: #{$disabled-background};
-  --#{$prefix}btn-disabled-border-color: #{$disabled-border};
+.button_modal{
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 500px;
+  height: auto;
 }
 
+.carusel{
+  background-color: $purple;
+  width: 100%;
+  height: auto;
 
-$btn-color:                   var(--#{$prefix}body-color);
-$btn-padding-y:               $input-btn-padding-y;
-$btn-padding-x:               $input-btn-padding-x;
-$btn-font-family:             $input-btn-font-family;
-$btn-font-size:               $input-btn-font-size;
-$btn-line-height:             $input-btn-line-height;
-$btn-white-space:             null; // Set to `nowrap` to prevent text wrapping
-
-$btn-padding-y-sm:            $input-btn-padding-y-sm;
-$btn-padding-x-sm:            $input-btn-padding-x-sm;
-$btn-font-size-sm:            $input-btn-font-size-sm;
-
-$btn-padding-y-lg:            $input-btn-padding-y-lg;
-$btn-padding-x-lg:            $input-btn-padding-x-lg;
-$btn-font-size-lg:            $input-btn-font-size-lg;
-
-$btn-border-width:            $input-btn-border-width;
-
-$btn-font-weight:             $font-weight-normal;
-$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
-$btn-focus-width:             $input-btn-focus-width;
-$btn-focus-box-shadow:        $input-btn-focus-box-shadow;
-$btn-disabled-opacity:        .65;
-$btn-active-box-shadow:       inset 0 3px 5px rgba($black, .125);
-
-$btn-link-color:              var(--#{$prefix}link-color);
-$btn-link-hover-color:        var(--#{$prefix}link-hover-color);
-$btn-link-disabled-color:     $gray-600;
-$btn-link-focus-shadow-rgb:   to-rgb(mix(color-contrast($link-color), $link-color, 15%));
-
-// Allows for customizing button radius independently from global border radius
-$btn-border-radius:           var(--#{$prefix}border-radius);
-$btn-border-radius-sm:        var(--#{$prefix}border-radius-sm);
-$btn-border-radius-lg:        var(--#{$prefix}border-radius-lg);
-
-$btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
-$btn-hover-bg-shade-amount:       15%;
-$btn-hover-bg-tint-amount:        15%;
-$btn-hover-border-shade-amount:   20%;
-$btn-hover-border-tint-amount:    10%;
-$btn-active-bg-shade-amount:      20%;
-$btn-active-bg-tint-amount:       20%;
-$btn-active-border-shade-amount:  25%;
-$btn-active-border-tint-amount:   10%;
-
-.example_page {
-  padding: 20px;
-  
-  // Стили для контейнера, а не для кнопки
-  .btn {
-    
-    margin: 5px;
+  h3{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: $white;
   }
+  
+
+  
+
+  
 }
 
-// Если хотите кастомные стили для кнопок
-.custom-btn {
-  @extend .btn;
-  @extend .btn-primary;
-  border-radius: 25px;
-  padding: 12px 30px;
-}

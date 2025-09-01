@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "sass": "^1.91.0"
   }
 }
