@@ -60,11 +60,13 @@ export const Main = () => {
               const modal = Modal.getOrCreateInstance(closeModal);
               modal?.hide();
 
-              
-              const backdrop = document.querySelector('.modal-backdrop');
-              if (backdrop) {
-                backdrop.remove(); 
+              const openButton = document.querySelector('[data-bs-target="#staticBackdrop"]');
+              if (openButton) {
+                (openButton as HTMLElement).focus();
               }
+
+              
+              
 
               
               const form = closeModal.querySelector('form');
