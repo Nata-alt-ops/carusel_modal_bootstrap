@@ -33,15 +33,12 @@ export const Main = () => {
 
   const handleChange = (e:any) => {
     const { name, value } = e.target;
-    if (name === 'title') {
-      setFormData((prev) => ({ ...prev, title: value }));
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e:any) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData((prev) => ({ ...prev, photoFile: e.target.files![0] }));
-    }
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({ ...prev, photoFile: file }));
   };
 
   const handleSubmit = () => {
