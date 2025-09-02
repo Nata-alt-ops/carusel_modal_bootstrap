@@ -46,7 +46,7 @@ export const Main = () => {
     setFormData(prev => ({ ...prev, photoFile: file }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e:any) => {
     const { title, photoFile } = formData;
 
     if (!title.trim() || !photoFile) {
@@ -106,16 +106,21 @@ export const Main = () => {
 
             <div className="modal-body">
 
+                <form className="was-validated">
                 <div className="input-group mb-3">
                     <span className="input-group-text" id="inputGroup-sizing-default">Название:</span>
                     <input type="text" className="form-control" aria-label="Пример размера поля ввода" aria-describedby="inputGroup-sizing-default" value={formData.title} name="title"
-                  onChange={handleChange} />
+                  onChange={handleChange} required />
+                  <div className="invalid-feedback">Введите название</div>
                 </div>
 
                 <div className="input-group mb-3">
-                    <input type="file" className="form-control" id="inputGroupFile02"  onChange={handleFileChange} />
+                  <input type="file" className="form-control" aria-label="file example"  onChange={handleFileChange} required></input>
+                  <div className="invalid-feedback">Добавьте файл</div>
                     
                 </div>
+
+                </form>
 
             </div>
             <div className="modal-footer">
