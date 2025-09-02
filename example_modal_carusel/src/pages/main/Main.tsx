@@ -23,6 +23,11 @@ export const Main = () => {
       id: 2,
       title: 'Крутой котик',
       photo: '/cat2.jpg', 
+    },
+     {
+      id: 3,
+      title: 'Крутой котик',
+      photo: '/cat3.jpg', 
     }
   ]);
 
