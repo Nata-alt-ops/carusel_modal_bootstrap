@@ -94,11 +94,12 @@ export const Main = () => {
             <div className="modal-content">
             <div className="modal-header">
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">Добавить картинку</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" onClick={() => {reset({ title: '' }); 
-
-    const CleanFile = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (CleanFile) CleanFile.value = '';
-  }} ></button>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" 
+                onClick={() => {
+                reset({ title: '' }); 
+                const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+                if (fileInput) fileInput.value = '';
+              }} ></button>
             </div>
 
             <div className="modal-body">
