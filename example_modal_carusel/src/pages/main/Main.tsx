@@ -97,6 +97,7 @@ export const Main = () => {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" 
                 onClick={() => {
                 reset({ title: '' }); 
+
                 const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
                 if (fileInput) fileInput.value = '';
               }} ></button>
