@@ -3,9 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import '../main/Main.scss';
 import { useForm } from 'react-hook-form';
-import bootstrap from 'bootstrap';
-
-
+import Modal from 'bootstrap/js/dist/modal';
 
 type PictureMeme = {
   id: number;
@@ -13,16 +11,14 @@ type PictureMeme = {
   photo: string; 
 };
 
-type PictureMemeProps = {
-  setIsAuthenticated: (value:boolean) => void;
-}
+
 type FormValues = {
   title: string;
   photoFile: FileList;
 };
 
 
-export const Main = ({setIsAuthenticated}: PictureMemeProps) => {
+export const Main = () => {
   const [pictures, setPictures] = useState<PictureMeme[]>([
     {
       id: 1,
@@ -61,10 +57,16 @@ export const Main = ({setIsAuthenticated}: PictureMemeProps) => {
 
           const closeModal = document.getElementById('staticBackdrop');
             if (closeModal) {
-              const modal = bootstrap.Modal.getInstance(closeModal);
+              const modal = Modal.getOrCreateInstance(closeModal);
               modal?.hide();
 
-              // Сброс формы 
+              
+              const backdrop = document.querySelector('.modal-backdrop');
+              if (backdrop) {
+                backdrop.remove(); 
+              }
+
+              
               const form = closeModal.querySelector('form');
               if (form) form.reset();
             }
@@ -72,45 +74,6 @@ export const Main = ({setIsAuthenticated}: PictureMemeProps) => {
           reader.readAsDataURL(file);
       };
         
-
-    /*const handleChange = (e:any) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleFileChange = (e:any) => {
-      const file = e.target.files?.[0] || null;
-      setFormData(prev => ({ ...prev, photoFile: file }));
-    };
-
-    const handleSubmit = (e:any) => {
-      const { title, photoFile } = formData;
-
-      if (!title.trim() || !photoFile) {
-        alert('Заполните заголовок и выберите изображение');
-        return;
-      }
-
-      
-      const reader = new FileReader();
-      reader.onload = () => {
-        const newPicture: PictureMeme = {
-          id: Date.now(), 
-          title,
-          photo: reader.result as string, 
-        };
-
-        setPictures((prev) => [...prev, newPicture]);
-
-      
-        setFormData({ title: '', photoFile: null });
-
-      
-        
-      };
-
-      reader.readAsDataURL(photoFile);
-    };*/
 
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -133,7 +96,7 @@ export const Main = ({setIsAuthenticated}: PictureMemeProps) => {
         Добавить картинку
       </button>
 
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="false">
         <div className="modal-dialog">
             <div className="modal-content">
             <div className="modal-header">
@@ -157,13 +120,13 @@ export const Main = ({setIsAuthenticated}: PictureMemeProps) => {
                    {errors.photoFile && <div className="invalid-feedback d-block">{errors.photoFile.message}</div>}
                     
                 </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="submit" className="btn btn-primary">Добавить</button>
+                </div>
+
 
                 </form>
-
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" className="btn btn-primary"  onClick={handleSubmit(onSubmit)}>Добавить</button>
             </div>
             </div>
         </div>
