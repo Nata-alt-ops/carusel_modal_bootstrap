@@ -59,22 +59,33 @@ export const Main = () => {
             if (closeModal) {
               const modal = Modal.getOrCreateInstance(closeModal);
               modal?.hide();
-
-              const form = closeModal.querySelector('form');
-              if (form) form.reset();
             }
           };
           reader.readAsDataURL(file);
       };
         
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500); 
+     useEffect(() => {
+  const modalElement = document.getElementById('staticBackdrop');
+  if (!modalElement) return;
 
-  return () => clearTimeout(timer);
-  }, []);
+  const handleReset = () => {
+    reset({ title: '' });
+
+    const fileInput = modalElement.querySelector('input[type="file"]') as HTMLInputElement | null;
+    if (fileInput) {
+      fileInput.value = '';
+    }
+  };
+
+  modalElement.addEventListener('hidden.bs.modal', handleReset);
+
+  return () => {
+    modalElement.removeEventListener('hidden.bs.modal', handleReset);
+  };
+}, [reset]);
+
+
 
   return (
     <div className="example_page p-4">
@@ -83,24 +94,20 @@ export const Main = () => {
       <button
         type="button"
         className="btn btn-dark button_modal"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
+         onClick={() => {
+    const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!);
+    modal.show();
+  }}
       >
         Добавить картинку
       </button>
 
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="false">
+      <div className="modal fade" id="staticBackdrop" data-bs-keyboard="false" data-bs-backdrop="true" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
             <div className="modal-header">
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">Добавить картинку</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" 
-                onClick={() => {
-                reset({ title: '' }); 
-
-                const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-                if (fileInput) fileInput.value = '';
-              }} ></button>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" ></button>
             </div>
 
             <div className="modal-body">
