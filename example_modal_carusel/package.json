@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
+    "animate-sass": "^0.8.2",
     "sass": "^1.91.0"
   }
 }

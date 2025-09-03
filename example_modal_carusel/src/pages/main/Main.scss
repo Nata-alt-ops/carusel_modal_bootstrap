@@ -4,6 +4,30 @@
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/buttons";
 
+@import "node_modules/animate-sass/animate";
+
+.example_page{
+  .jump-letters {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  }
+  .jump-letters span {
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  animation: bounce 0.3s ease infinite alternate;
+  animation-delay: calc(var(--i) * 0.1s); // ключевое!
+  font-size: 93px;
+  color: #f9f5f5;
+  font-family: cursive;
+  background-color: $purple;
+  text-shadow: 0px 5px 4px $purple, 0px 9px 10px black;
+  }
+
+
+}
 
 
 
@@ -26,9 +50,101 @@
     color: $white;
   }
   
-
   
-
+  
+  
+  
   
 }
 
+
+/*.jump-letters span:nth-child(2) {
+animation-delay: 0.1s;
+}
+.jump-letters span:nth-child(3) {
+animation-delay: 0.2s;
+}
+.jump-letters span:nth-child(4) {
+animation-delay: 0.3s;
+}
+.jump-letters span:nth-child(5) {
+animation-delay: 0.4s;
+}
+.jump-letters span:nth-child(6) {
+animation-delay: 0.5s;
+}
+.jump-letters span:nth-child(7) {
+animation-delay: 0.6s;
+}
+.jump-letters span:nth-child(8) {
+animation-delay: 0.7s;
+}
+.jump-letters span:nth-child(9) {
+animation-delay: 0.8s;
+}
+.jump-letters span:nth-child(10) {
+animation-delay: 0.9s;
+}
+.jump-letters span:nth-child(11) {
+animation-delay: 1s;
+}
+.jump-letters span:nth-child(12) {
+animation-delay: 0.9s;
+}
+.jump-letters span:nth-child(13) {
+animation-delay: 0.8s;
+}
+.jump-letters span:nth-child(14) {
+animation-delay: 0.7s;
+}
+.jump-letters span:nth-child(15) {
+animation-delay: 0.6s;
+}
+.jump-letters span:nth-child(16) {
+animation-delay: 0.5s;
+}
+.jump-letters span:nth-child(17) {
+animation-delay: 0.4s;
+}
+.jump-letters span:nth-child(18) {
+animation-delay: 0.3s;
+}
+.jump-letters span:nth-child(19) {
+animation-delay: 0.2s;
+}
+.jump-letters span:nth-child(20) {
+animation-delay: 0.1s;
+}
+.jump-letters span:nth-child(21) {
+animation-delay: 0s;
+}
+.jump-letters span:nth-child(22) {
+animation-delay: 0.1s;
+}
+.jump-letters span:nth-child(23) {
+animation-delay: 0.2s;
+}
+.jump-letters span:nth-child(24) {
+animation-delay: 0.3s;
+}
+.jump-letters span:nth-child(25) {
+animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+100% {
+  top: -20px;
+  text-shadow: 0 10px 0 #bfbebe, 0 20px 10px rgba(0, 0, 0, 0.21);
+}
+}*/
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+    text-shadow: 
+      0px 5px 4px $purple, 
+  }
+  100% {
+    top: -20px;
+  
+  }
+}
