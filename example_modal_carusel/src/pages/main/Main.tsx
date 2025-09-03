@@ -96,19 +96,7 @@ export const Main = () => {
   };
 }, [reset]);
 
-useEffect(() => {
-  // Инициализация тоста
-  const toastElement = document.getElementById('liveToast');
-  const toastBtn = document.getElementById('liveToastBtn');
-  
-  if (toastElement && toastBtn) {
-    const toast = new Toast(toastElement);
-    
-    toastBtn.addEventListener('click', () => {
-      toast.show();
-    });
-  }
-}, []);
+
 
 
 
