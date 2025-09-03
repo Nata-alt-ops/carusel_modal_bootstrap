@@ -95,6 +95,13 @@ export const Main = () => {
     modalElement.removeEventListener('hidden.bs.modal', handleReset);
   };
 }, [reset]);
+useEffect(() => {
+  const toastEl = document.getElementById('liveToast');
+  if (toastEl) {
+    // Инициализируем тост один раз при загрузке
+    new Toast(toastEl);
+  }
+}, []);
 
 
 
@@ -230,7 +237,16 @@ export const Main = () => {
   </div>
 </div>
 
-<button type="button" className="btn btn-primary" id="liveToastBtn">Показать лайв тосты</button>
+<button type="button" className="btn btn-primary" 
+onClick={() => {
+    const toastEl = document.getElementById('liveToast');
+    if (toastEl) {
+      const toast = Toast.getInstance(toastEl) || new Toast(toastEl);
+      toast.show();
+    }
+  }}
+
+id="liveToastBtn" >Показать лайв тосты</button>
 
 <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 11 }}>
   <div id="liveToast" className="toast " role="alert" aria-live="assertive" aria-atomic="true">
