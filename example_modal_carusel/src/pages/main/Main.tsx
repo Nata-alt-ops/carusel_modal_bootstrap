@@ -14,7 +14,7 @@ type PictureMeme = {
 
 type FormValues = {
   title: string;
-  photoFile: FileList;
+  photoFile: FileList | null;
 };
 
 
@@ -33,36 +33,50 @@ export const Main = () => {
     {
       id: 3,
       title: 'Крутой котик',
-      photo: '/cat3.jpg', 
+      photo: '', 
     }
   ]);
   const { register, handleSubmit, formState:{ errors }, setError, reset } = useForm<FormValues>();
   const [isLoading, setIsLoading] = useState(true);
 
     const onSubmit = (data: FormValues) => {
-        const file = data.photoFile[0];
-        if (!file) return;
+  const id = pictures.length === 0 ? 1 : Math.max(...pictures.map(p => p.id)) + 1;
 
-        const reader = new FileReader();
-        reader.onload = () => {
-          const newPicture: PictureMeme = {
-            id: pictures.length === 0 ? 1 : Math.max(...pictures.map(p => p.id)) + 1,
-            title: data.title,
-            photo: reader.result as string,
-          };
 
-          setPictures(prev => [...prev, newPicture]);
+  if (data.photoFile && data.photoFile.length > 0) {
+    const file = data.photoFile[0];
 
-          reset({ title: ''});
-
-          const closeModal = document.getElementById('staticBackdrop');
-            if (closeModal) {
-              const modal = Modal.getOrCreateInstance(closeModal);
-              modal?.hide();
-            }
-          };
-          reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const newPicture: PictureMeme = {
+        id,
+        title: data.title,
+        photo: reader.result as string, 
       };
+
+      setPictures(prev => [...prev, newPicture]); 
+      reset({ title: '' });
+
+      const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!);
+      modal.hide();
+    };
+    reader.readAsDataURL(file);
+  } 
+
+  else {
+    const newPicture: PictureMeme = {
+      id,
+      title: data.title,
+      photo: '', 
+    };
+
+    setPictures(prev => [...prev, newPicture]);
+    reset({ title: '' });
+
+    const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!);
+    modal.hide();
+  }
+};
         
 
      useEffect(() => {
@@ -70,12 +84,8 @@ export const Main = () => {
   if (!modalElement) return;
 
   const handleReset = () => {
-    reset({ title: '' });
+    reset({ title: '', photoFile : null  });
 
-    const fileInput = modalElement.querySelector('input[type="file"]') as HTMLInputElement | null;
-    if (fileInput) {
-      fileInput.value = '';
-    }
   };
 
   modalElement.addEventListener('hidden.bs.modal', handleReset);
@@ -122,7 +132,7 @@ export const Main = () => {
 
                 <div className="input-group mb-3">
                   <input type="file"  aria-label="file example"  className={`form-control ${errors.photoFile ? 'is-invalid' : ''}`}
-                    {...register('photoFile', { required: 'Выберите файл' })}></input>
+                    {...register('photoFile')}></input>
                    {errors.photoFile && <div className="invalid-feedback d-block">{errors.photoFile.message}</div>}
                     
                 </div>
