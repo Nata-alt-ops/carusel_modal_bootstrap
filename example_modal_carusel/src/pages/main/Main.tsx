@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
+/*import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';*/
 import '../main/Main.scss';
 import { useForm } from 'react-hook-form';
-import Modal from 'bootstrap/js/dist/modal';
-import { Toast } from 'bootstrap';
+/*import Modal from 'bootstrap/js/dist/modal';
+import { Toast } from 'bootstrap';*/
+import { Modal, Toast } from 'bootstrap';
 
 type PictureMeme = {
   id: number;
@@ -98,9 +99,17 @@ export const Main = () => {
 useEffect(() => {
   const toastEl = document.getElementById('liveToast');
   if (toastEl) {
-    // Инициализируем тост один раз при загрузке
+  
     new Toast(toastEl);
   }
+}, []);
+
+
+useEffect(() => {
+  console.log('Bootstrap:', (window as any).bootstrap);
+}, []);
+useEffect(() => {
+  console.log('Bootstrap imported:', typeof Modal); // должно быть "function"
 }, []);
 
 
@@ -198,44 +207,93 @@ useEffect(() => {
       </div>
       </div>
 
-      <div className="accordion" id="accordionExample">
+
+<div className="accordion" id="accordionExample">
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingOne">
-      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button
+        className="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
         Элемент аккордеона #1
       </button>
     </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div
+      id="collapseOne"
+      className="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      // ✅ УБРАНО: data-bs-parent
+    >
       <div className="accordion-body">
-        <strong>Это тело аккордеона первого элемента.</strong> Оно отображается по умолчанию, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        <strong>Это тело аккордеона первого элемента.</strong> Теперь можно закрыть.
       </div>
     </div>
   </div>
+
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingTwo">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button
+        className="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
         Элемент аккордеона #2
       </button>
     </h2>
-    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div
+      id="collapseTwo"
+      className="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      // ✅ УБРАНО: data-bs-parent
+    >
       <div className="accordion-body">
-        <strong>Это тело аккордеона второго элемента.</strong> По умолчанию он скрыт, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        <strong>Это тело аккордеона второго элемента.</strong> Теперь можно закрыть.
       </div>
     </div>
   </div>
+
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingThree">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button
+        className="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree"
+      >
         Элемент аккордеона #3
       </button>
     </h2>
-    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+    <div
+      id="collapseThree"
+      className="accordion-collapse collapse"
+      aria-labelledby="headingThree"
+      // ✅ УБРАНО: data-bs-parent
+    >
       <div className="accordion-body">
-        <strong>Это тело аккордеона третьего элемента.</strong> По умолчанию оно скрыто, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        <strong>Это тело аккордеона третьего элемента.</strong> Теперь можно закрыть.
       </div>
     </div>
   </div>
 </div>
+
+       
+
+
+
+
+
+
+
+
 
 <button type="button" className="btn btn-primary" 
 onClick={() => {
