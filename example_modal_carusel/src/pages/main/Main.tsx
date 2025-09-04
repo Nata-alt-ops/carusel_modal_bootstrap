@@ -102,16 +102,18 @@ useEffect(() => {
 }, []);
 
 
-useEffect(() => {
+/*useEffect(() => {
   console.log('Modal:', Modal); // должен быть [class Modal]
-}, []);
+}, []);*/
+
+
 
 
 
 
 
   return (
-    <div className="example_page p-4">
+    <div className="example_page ">
 
        
         
@@ -211,7 +213,7 @@ useEffect(() => {
     </h2>
     <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div className="accordion-body">
-        <strong>Это тело аккордеона первого элемента.</strong> Оно отображается по умолчанию, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        Если ты не голубой подрисуй вагон другой
       </div>
     </div>
   </div>
@@ -223,7 +225,7 @@ useEffect(() => {
     </h2>
     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div className="accordion-body">
-        <strong>Это тело аккордеона второго элемента.</strong> По умолчанию он скрыт, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        Смерть пришла к старому парихмахеру с косой, а ушла с косой
       </div>
     </div>
   </div>
@@ -235,35 +237,30 @@ useEffect(() => {
     </h2>
     <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div className="accordion-body">
-        <strong>Это тело аккордеона третьего элемента.</strong> По умолчанию оно скрыто, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+        я хз, че тут писать. Фантазия закончилась
       </div>
     </div>
   </div>
 </div>
 
        
+<div className='w'>
+  <div className='e'>
+<h1>Живой пример</h1>
+<button type="button" className="btn btn-primary" id="liveToastBtn"
+   onClick={() => {
+    const toastLiveExample = document.getElementById('liveToast');
 
-
-
-
-
-
-
-
-
-<button type="button" className="btn btn-primary" 
-onClick={() => {
-    const toastEl = document.getElementById('liveToast');
-    if (toastEl) {
-      const toast = Toast.getInstance(toastEl) || new Toast(toastEl);
-      toast.show();
+    if (toastLiveExample) { 
+      const toastBootstrap = Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
     }
   }}
 
-id="liveToastBtn" >Показать лайв тосты</button>
+>Живой пример</button>
 
-<div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 11 }}>
-  <div id="liveToast" className="toast " role="alert" aria-live="assertive" aria-atomic="true">
+<div className="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div className="toast-header">
       <img src="..." className="rounded me-2" alt="..." />
       <strong className="me-auto">Bootstrap</strong>
@@ -275,9 +272,129 @@ id="liveToastBtn" >Показать лайв тосты</button>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<h1>Полупрозрачный </h1>
+<button type="button" className="btn btn-primary" id="liveToastBtn"
+   onClick={() => {
+     const toastLiveExample = document.getElementById('liveToast');
+     
+     if (toastLiveExample) { 
+       const toastBootstrap = Toast.getOrCreateInstance(toastLiveExample);
+       toastBootstrap.show();
+      }
+    }} >Полупрозрачное приложение</button>
+<div className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div className="toast-header">
+    <img src="..." className="rounded me-2" alt="..." />
+    <strong className="me-auto">Bootstrap</strong>
+    <small className="text-body-secondary">11 мин. назад</small>
+    <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+  </div>
+  <div className="toast-body">
+    Привет мир! Это тост-сообщение.
+  </div>
+</div>
       
 
      
+
+
+<h1>Группа сообщений</h1>
+
+<button type="button" className="btn btn-primary" id="liveToastBtn"
+   onClick={() => {
+     // Получаем все toast элементы
+     const toastElements = document.querySelectorAll('.toast-container.position-static .toast');
+     console.log('Found elements:', toastElements); // Проверьте в консоли
+     
+     // Для каждого элемента создаем и показываем toast
+     toastElements.forEach(toastElement => {
+       const toastBootstrap = Toast.getOrCreateInstance(toastElement);
+       toastBootstrap.show();
+      });
+    }}>Группа уведом.</button>
+<div className="toast-container position-static ">
+  <div className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div className="toast-header">
+      <img src="..." className="rounded me-2" alt="..." />
+      <strong className="me-auto">Bootstrap</strong>
+      <small className="text-body-secondary">прямо сейчас</small>
+      <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+    </div>
+    <div className="toast-body">
+      Видите? Именно так.
+    </div>
+  </div>
+
+  <div className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div className="toast-header">
+      <img src="..." className="rounded me-2" alt="..." />
+      <strong className="me-auto">Bootstrap</strong>
+      <small className="text-body-secondary">2 секунды назад</small>
+      <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+    </div>
+    <div className="toast-body">
+      Внимание, всплывающие сообщения складываются автоматически
+    </div>
+  </div>
+</div>
+
+<button type="button" className="btn btn-primary" 
+   onClick={() => {
+    // Используем querySelector для поиска по классам
+    const toastLiveExample = document.querySelector('.toast.align-items-center');
+
+    if (toastLiveExample) { 
+      const toastBootstrap = Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    }
+  }}>
+  свое сообщение
+</button>
+
+<div className="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  {/*<div className="d-flex">
+    <div className="toast-body">
+      Привет, мир! Это тост-сообщение.
+      <div className="mt-2 pt-2 border-top">
+      <button type="button" className="btn btn-primary btn-sm">Действовать</button>
+      <button type="button" className="btn btn-secondary btn-sm" data-bs-dismiss="toast">Закрыть</button>
+    </div>
+    </div>
+  </div>*/}
+   <div className="d-flex">
+    <div className="toast-body">
+      Привет, мир! Это тост-сообщение.
+    </div>
+    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+  </div>
+</div>
+</div>
+    
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -5,26 +5,44 @@
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/transitions.scss";
 
-.button_modal{
-  margin-top: 50px;
-  margin-left: 50px;
-  width: 500px;
-  height: auto;
-}
+@import "bootstrap/scss/toasts";
 
-.carusel{
-  background-color: $purple;
-  width: 100%;
-  height: auto;
-  min-height: 400px;
-
-  h3{
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    color: $white;
+.example_page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .button_modal{
+    margin: 50px 50px;
+    height: auto;
   }
   
+  .carusel{
+    background-color: $purple;
+    width: 100%;
+    height: auto;
+    min-height: 400px;
   
+    h3{
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      color: $white;
+    }
+    
+    
+  }
+
+  .w{
+    display: flex;
+    width:calc(100% - 100px);
+   
+
+  }
+  .accordion{
+    width: calc(100% - 100px);
+  }
+
 }
+
 
 
