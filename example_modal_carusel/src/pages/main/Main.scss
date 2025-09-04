@@ -3,8 +3,7 @@
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/buttons";
-
-@import "node_modules/animate-sass/animate";
+@import "bootstrap/scss/transitions.scss";
 
 .button_modal{
   margin-top: 50px;
