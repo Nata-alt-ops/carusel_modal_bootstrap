@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../main/Main.scss';
 import { useForm } from 'react-hook-form';
 import { Modal, Toast } from 'bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap';
 type PictureMeme = {
   id: number;
   title: string;
@@ -18,6 +19,19 @@ type FormValues = {
 
 
 export const Main = () => {
+
+  const [openPanels, setOpenPanels] = useState({
+  one: true,
+  two: false,
+  three: false,
+});
+
+const togglePanel = (panel: 'one' | 'two' | 'three') => {
+  setOpenPanels(prev => ({
+    ...prev,
+    [panel]: !prev[panel]
+  }));
+};
   const [pictures, setPictures] = useState<PictureMeme[]>([
     {
       id: 1,
@@ -54,7 +68,9 @@ export const Main = () => {
       };
 
       setPictures(prev => [...prev, newPicture]); 
-      reset({ title: '' });
+      reset({ title: '', photoFile: null });
+
+      
 
       const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!);
       modal.hide();
@@ -85,6 +101,8 @@ export const Main = () => {
   const handleReset = () => {
     reset({ title: '', photoFile : null  });
 
+
+
   };
 
   modalElement.addEventListener('hidden.bs.modal', handleReset);
@@ -102,10 +120,19 @@ useEffect(() => {
 }, []);
 
 
-/*useEffect(() => {
-  console.log('Modal:', Modal); // должен быть [class Modal]
-}, []);*/
+useEffect(() => {
+  // Проверяем, что Bootstrap загрузился
+  if (typeof window !== 'undefined' && window.bootstrap) {
+    console.log('Bootstrap loaded successfully');
+  } else {
+    console.error('Bootstrap not loaded');
+  }
+}, []);
 
+
+ const [isPanelOpen, setIsPanelOpen] = useState(true);
+
+ 
 
 
 
@@ -117,17 +144,9 @@ useEffect(() => {
 
        
         
-      <button
-        type="button"
-        className="btn btn-dark button_modal"
-         onClick={() => {
-    const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!);
-    modal.show();
-  }}
-      >
+      <button type="button" className="btn btn-dark button_modal" onClick={() => { const modal = Modal.getOrCreateInstance(document.getElementById('staticBackdrop')!); modal.show();}}>
         Добавить картинку
       </button>
-
       <div className="modal fade" id="staticBackdrop" data-bs-keyboard="false" data-bs-backdrop="true" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
@@ -204,44 +223,159 @@ useEffect(() => {
       </div>
 
 
-<div className="accordion" id="accordionExample">
+      <div className="accordion" id="accordionExample">
+  {/* Панель 1 */}
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingOne">
-      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+      <button
+        className={`accordion-button ${openPanels.one ? '' : 'collapsed'}`}
+        type="button"
+        aria-expanded={openPanels.one}
+        aria-controls="collapseOne"
+        onClick={() => togglePanel('one')}
+        style={{ cursor: 'pointer' }}
+      >
         Элемент аккордеона #1
       </button>
     </h2>
-    <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div
+      id="collapseOne"
+      className={`accordion-collapse collapse ${openPanels.one ? 'show' : ''}`}
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
       <div className="accordion-body">
-        Если ты не голубой подрисуй вагон другой
+        Если ты не голубой — подрисуй вагон другой
       </div>
     </div>
   </div>
+
+  {/* Панель 2 */}
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingTwo">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button
+        className={`accordion-button ${openPanels.two ? '' : 'collapsed'}`}
+        type="button"
+        aria-expanded={openPanels.two}
+        aria-controls="collapseTwo"
+        onClick={() => togglePanel('two')}
+        style={{ cursor: 'pointer' }}
+      >
         Элемент аккордеона #2
       </button>
     </h2>
-    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div
+      id="collapseTwo"
+      className={`accordion-collapse collapse ${openPanels.two ? 'show' : ''}`}
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
       <div className="accordion-body">
-        Смерть пришла к старому парихмахеру с косой, а ушла с косой
+        Смерть пришла к старому парикмахеру с косой, а ушла с косой
       </div>
     </div>
   </div>
+
+  {/* Панель 3 */}
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingThree">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button
+        className={`accordion-button ${openPanels.three ? '' : 'collapsed'}`}
+        type="button"
+        aria-expanded={openPanels.three}
+        aria-controls="collapseThree"
+        onClick={() => togglePanel('three')}
+        style={{ cursor: 'pointer' }}
+      >
         Элемент аккордеона #3
       </button>
     </h2>
-    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+    <div
+      id="collapseThree"
+      className={`accordion-collapse collapse ${openPanels.three ? 'show' : ''}`}
+      aria-labelledby="headingThree"
+      data-bs-parent="#accordionExample"
+    >
       <div className="accordion-body">
-        я хз, че тут писать. Фантазия закончилась
+        Фантазия закончилась
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 
        
 <div className='w'>
@@ -375,15 +509,6 @@ useEffect(() => {
   </div>
 </div>
 </div>
-    
-
-
-
-
-
-
-
-
 </div>
 
 
