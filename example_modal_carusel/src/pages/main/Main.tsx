@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap';
 
-import StarIcon from '../public/star-fill.svg';
+
 type PictureMeme = {
   id: number;
   title: string;
@@ -439,7 +439,7 @@ useEffect(() => {
 </div>
 </div>
 
-<img src={StarIcon} alt="звезда" />
+<img src="star-fill.svg" alt="Star icon" width="24" height="24" className='u'/>
 
 
 
