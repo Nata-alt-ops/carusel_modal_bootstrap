@@ -28,6 +28,30 @@
       font-family: 'Courier New', Courier, monospace;
       color: $white;
     }
+
+    .card {
+      min-height: 400px;
+      width: 100%;
+  
+
+    }
+     .card-body {
+    flex: 1;                     // Оставшееся пространство под текст
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .card-text {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;       // Ограничиваем до 2 строк
+    -webkit-box-orient: vertical;
+  }
     
     
   }

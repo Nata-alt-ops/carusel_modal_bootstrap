@@ -5,6 +5,8 @@ import { Modal, Toast } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap';
+
+import StarIcon from '../public/star-fill.svg';
 type PictureMeme = {
   id: number;
   title: string;
@@ -303,81 +305,7 @@ useEffect(() => {
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-       
 <div className='w'>
   <div className='e'>
 <h1>Живой пример</h1>
@@ -511,7 +439,7 @@ useEffect(() => {
 </div>
 </div>
 
-
+<img src={StarIcon} alt="звезда" />
 
 
 
